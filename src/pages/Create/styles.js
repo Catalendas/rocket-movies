@@ -23,14 +23,14 @@ export const Form = styled.form`
             color: ${({ theme }) => theme.COLORS.GRAY_300};
         }
 
-        > div {
+        /* > div {
             gap: 24px;
             border-radius: 10px;
             padding: 1rem;
 
             background-color: ${({ theme }) => theme.COLORS.BLACK};
             display: flex;
-        }
+        } */
     }
 
     > div:nth-child(5) {
@@ -48,11 +48,22 @@ export const Form = styled.form`
         /* background-color: ${({ theme }) => theme.COLORS.GRAY_800}; */
     }
 
-    .tags-new {
+    /* .tags-new {
         background-color: transparent;
         border: dashed;
         border-color: ${({ theme }) => theme.COLORS.GRAY_300};
         color: ${({ theme }) => theme.COLORS.GRAY_300};
-    }
+    } */
+`
+
+export const Tags = styled.div`
+    display: flex; 
+    flex-wrap: wrap;
+
+    gap: 24px;
+    border-radius: 10px;
+    padding: 1rem;
+
+    background-color: ${({ theme }) => theme.COLORS.BLACK};
 `
 

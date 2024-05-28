@@ -5,8 +5,18 @@ import { Cards, Container, Title } from "./styles";
 
 import { Card } from "../../components/Card";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { api } from "../../service/api";
+import { useAuth } from "../../hooks/authHook";
 
 export function Home() {
+
+    const { movies, getAll } = useAuth()
+    
+    useEffect(() => {
+        getAll("")
+    }, [])
+
     return (
         <Container>
             <Header/>
@@ -23,11 +33,16 @@ export function Home() {
             </Title>
 
             <Cards>
-               <Card to="/preview/1"/>
-               <Card />
-               <Card />
-               <Card />
-               <Card />
+               {movies && movies.map((card) => (
+                    <Card 
+                        key={card.id}
+                        to={`/preview/${card.id}`}
+                        title={card.title}
+                        description={card.description}
+                        ratings={card.rating}
+                        tags={card.tags}
+                    />
+               ))}
             </Cards>
         </Container>
     )

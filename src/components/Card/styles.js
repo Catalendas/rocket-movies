@@ -45,3 +45,14 @@ export const Container = styled(Link)`
         gap: 8px;
     }
 `
+
+export const Tag = styled.span`
+    padding: 5px 16px;
+    border-radius: 10px;
+    background-color: ${({ theme, isNew }) => !isNew && theme.COLORS.GRAY_800};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: ${({ theme }) => theme.COLORS.GRAY_300};
+`

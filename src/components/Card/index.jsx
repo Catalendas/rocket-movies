@@ -1,27 +1,54 @@
-import { Tag } from "../Tag";
-import { Container } from "./styles";
+import { useEffect, useState } from "react";
+import { Container, Tag } from "./styles";
 import { FaRegStar, FaStar } from "react-icons/fa";
 
-export function Card({ ...rest }) {
+export function Card({ title, description, ratings, tags, ...rest }) {
+
+    const [rating, setRating] = useState([])
+
+    function calculateRating() {
+        const ratingArr = []
+
+        for(var i = 0; i <= 4; i++) {
+            if (i <= ratings) {
+                ratingArr.push(true)
+            } else {
+                ratingArr.push(false)
+            }
+
+        }
+
+        setRating(ratingArr)
+    }
+
+    useEffect(() => {
+        calculateRating()
+    }, [])
+
     return (
         <Container {...rest}>
             <div>
-                <h3>Interestellar</h3>
+                <h3>{title}</h3>
                 <span>
-                    <FaStar size={10}/>
-                    <FaStar size={10}/>
-                    <FaStar size={10}/>
-                    <FaStar size={10}/>
-                    <FaRegStar size={10}/>
+                    {rating.map((star, index) => {
+                        if(star) {
+                            return <FaStar size={10} key={index}/>
+                        } else {
+                            return <FaRegStar size={10} key={index}/>
+                        }
+                    })}
                 </span>
             </div>
 
-            <p>Pragas nas colheitas fizeram a civilização humana regredir para uma sociedade agrária em futuro de data desconhecida. Cooper, ex-piloto da NASA, tem uma fazenda com sua família. Murphy, a filha de dez anos de Cooper, acredita que seu quarto está assombrado por um fantasma que tenta se comunicar com ela. Pai e filha descobrem que o "fantasma" é uma inteligência desconhecida que está enviando mensagens codificadas através de radiação gravitacional, deixando coordenadas em binário que os levam até uma instalação secreta da NASA liderada pelo professor John Brand. O cientista revela que um buraco de minhoca foi aberto perto de Saturno e que ele leva a planetas que podem oferecer condições de sobrevivência para a espécie humana. As "missões Lázaro" enviadas anos antes identificaram três planetas potencialmente habitáveis orbitando o buraco negro Gargântua: Miller, Edmunds e Mann – nomeados em homenagem aos astronautas que os pesquisaram. Brand recruta Cooper para pilotar a nave espacial Endurance e recuperar os dados dos astronautas; se um dos planetas se mostrar habitável, a humanidade irá seguir para ele na instalação da NASA, que é na realidade uma enorme estação espacial. A partida de Cooper devasta Murphy.</p>
+            <p>{description}</p>
 
             <div>
-                <Tag text="Ficção cientifica" />
+                { tags && tags.map((tag) => (
+                    <Tag key={tag.id}>{tag.name}</Tag>
+                ))}
+                {/* <Tag text="Ficção cientifica" />
                 <Tag text="Drama" />
-                <Tag text="Familia" />
+                <Tag text="Familia" /> */}
             </div>
         </Container>
     )

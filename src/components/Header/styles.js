@@ -36,9 +36,12 @@ export const Profile = styled(Link)`
         display: flex;
         flex-direction: column;
         align-items: end;
-
-        a {
-            color: ${({ theme }) => theme.COLORS.GRAY_300};
-        }
     }
+`
+
+export const LogOut = styled.button`
+    color: ${({ theme }) => theme.COLORS.GRAY_300};
+    background: none;
+    border: none;
+    cursor: pointer;
 `

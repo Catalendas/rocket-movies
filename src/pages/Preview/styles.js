@@ -54,6 +54,7 @@ export const Container = styled.div`
             display: flex;
             gap: 8px;
             margin-top: 40px;
+            flex-wrap: wrap;
         }
 
         > p {
@@ -61,4 +62,15 @@ export const Container = styled.div`
             margin-bottom: 156px;
         }
     }
+`
+
+export const Tag = styled.span`
+    padding: 5px 16px;
+    border-radius: 10px;
+    background-color: ${({ theme, isNew }) => !isNew && theme.COLORS.GRAY_800};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: ${({ theme }) => theme.COLORS.GRAY_300};
 `
